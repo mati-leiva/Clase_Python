@@ -1,8 +1,7 @@
 import pygame
 import sys
 import pygame.locals as pl
-import math
-
+import numpy as np
 
 class Point:
     def __init__(self, pos_x, pos_y):
@@ -18,18 +17,16 @@ class Point:
         pygame.draw.rect(DISPLAYSURF, RED, (self.pos_x ,self.pos_y,2,2))
 
     def normalice_vel(self):
-        self.vel_x = self.vel_x / (self.vel_x^2 + self.vel_y^2)
-        self.vel_y = self.vel_y / (self.vel_x^2 + self.vel_y^2)
+        vel = np.array([self.vel_x, self.vel_y])
+        
+
 
     def update_position(self):
-
         self.pos_x += self.vel_x
         self.pos_y += self.vel_y
 
 def display_game():
     while True:
-        
-
         Point_1 = Point(201,201)
         Point_1.draw_point()
 
