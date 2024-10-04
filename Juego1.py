@@ -5,11 +5,13 @@ Created on Fri Oct  4 08:45:33 2024
 @author: icmat
 """
 
-import pygame, sys
+import pygame
+import sys
 import pygame.locals as pl
+import math
 
 
-def iniciar_rectangulo():     
+def iniciar_rectangulo():
     while True:
         for event in pygame.event.get():
             if event.type == pl.QUIT:
@@ -18,25 +20,19 @@ def iniciar_rectangulo():
             pygame.display.update()
 
 
-BLACK = (  10,   10,   10)
+# Iniciamos los colores
+BLACK = (10,   10,   10)
 WHITE = (240, 240, 240)
 RED = (255,   10,   10)
-GREEN = (  10, 255,   10)
-BLUE = (  10,   10, 255)
-
-# draw on the surface object
-
+GREEN = (10, 255,   10)
+BLUE = (10,   10, 255)
+# Mostramos un display
 DISPLAYSURF = pygame.display.set_mode((500, 400), 0, 32)
 pygame.display.set_caption('Drawing')
 DISPLAYSURF.fill(WHITE)
-
-
-for i in range(0,15 ):
-    pygame.draw.rect(DISPLAYSURF, RED, (250+ 10*i,200+ 10*i, 10, 10))
-
+# Mostramos una colecciòn de puntos
+for i in range(0, 40):
+    pygame.draw.rect(DISPLAYSURF, RED, (250 + 40 *math.cos(i), 200 + 40*math.sin(i), 2, 2))
+    
 pygame.display.set_caption("hello World")
 iniciar_rectangulo()
-
-
-
-
