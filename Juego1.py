@@ -4,13 +4,37 @@ import pygame.locals as pl
 import math
 
 
-def iniciar_rectangulo():
+class Point:
+    def __init__(self, pos_x, pos_y):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        [pos_x_mouse,pos_y_mouse]=pygame.mouse.get_pos()    
+        self.vel_x = (pos_x_mouse - self.pos_x)
+        self.vel_y = (pos_y_mouse - self.pos_y)
+    
+        Point.update_position(self)
+
+    def draw_point(self):
+        pygame.draw.rect(DISPLAYSURF, RED, (self.pos_x ,self.pos_y,2,2))
+
+    def update_position(self):
+        self.pos_x += self.vel_x
+        self.pos_y += self.vel_y
+
+def display_game():
     while True:
+        
+
+        Point_1 = Point(1,1)
+        Point_1.draw_point()
+
         for event in pygame.event.get():
             if event.type == pl.QUIT:
                 pygame.quit()
                 sys.exit()
             pygame.display.update()
+        clock.tick(60)
+        
 
 
 # Starting the colors
@@ -20,14 +44,14 @@ RED = (255,   10,   10)
 GREEN = (10, 255,   10)
 BLUE = (10,   10, 255)
 # Seting up the display
-DISPLAYSURF = pygame.display.set_mode((500, 400), 0, 32)
+
+DISPLAYSURF = pygame.display.set_mode((400, 400), 0, 32)
 pygame.display.set_caption('Drawing')
+clock = pygame.time.Clock()
 DISPLAYSURF.fill(WHITE)
-# We display a colection of points  
-
-for i in range(0, 40):
-    pygame.draw.rect(DISPLAYSURF, RED, (250 + 40 *
-                     math.cos(i), 200 + 40*math.sin(i), 2, 2))
-
+# We display a colection of points
+  
 pygame.display.set_caption("hello World")
-iniciar_rectangulo()
+
+display_game()
+
