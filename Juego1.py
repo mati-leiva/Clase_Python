@@ -9,13 +9,17 @@ class Point:
         self.pos_x = pos_x
         self.pos_y = pos_y
         [pos_x_mouse,pos_y_mouse]=pygame.mouse.get_pos()    
-        self.vel_x = (pos_x_mouse - self.pos_x)/2
-        self.vel_y = (pos_y_mouse - self.pos_y)/2
-    
+        self.vel_x = (pos_x_mouse - self.pos_x)
+        self.vel_y = (pos_y_mouse - self.pos_y)
+        Point.normalice_vel(self)
         Point.update_position(self)
 
     def draw_point(self):
         pygame.draw.rect(DISPLAYSURF, RED, (self.pos_x ,self.pos_y,2,2))
+
+    def normalice_vel(self):
+        self.vel_x = self.vel_x / (self.vel_x^2 + self.vel_y^2)
+        self.vel_y = self.vel_y / (self.vel_x^2 + self.vel_y^2)
 
     def update_position(self):
 
